@@ -8,28 +8,29 @@ dotenv.config();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://stuart-photography.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  })
-);
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://stuart-photography.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Backend is running ");
+});
 
 app.use('/api/clients', clientRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected "))
+  .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT} `);
-});
+const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("Backend is running  ");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
