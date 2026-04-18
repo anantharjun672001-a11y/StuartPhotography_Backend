@@ -12,8 +12,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://stuart-photography.vercel.app",
-    "https://www.stuartphotography.in",
-    "https://stuartphotography.in"
+    "https://www.stuartphtography.in",
+    "https://stuartphtography.in"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
